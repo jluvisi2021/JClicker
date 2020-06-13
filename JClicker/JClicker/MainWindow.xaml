@@ -1,0 +1,60 @@
+﻿<Window x:Class="JClicker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JClicker"
+        mc:Ignorable="d"
+        Title="JClicker" Height="450" Width="600" Icon="circle.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="563*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="JClicker" Margin="200.711,10,152.333,0" VerticalAlignment="Top" Height="55" FontFamily="Trebuchet MS" FontSize="30" FontWeight="Bold" Grid.Column="1"/>
+        <Image x:Name="BlackBar2" Margin="-208,-40,-102.667,218.667" Source="seperator.png" Stretch="Fill" Grid.ColumnSpan="2"/>
+        <Image x:Name="BlackBar1" Margin="104.711,90,76.333,30.667" Source="seperator.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Button x:Name="ClickButton" Content="Click Me!" HorizontalAlignment="Left" Margin="50.711,183,0,0" VerticalAlignment="Top" Width="190" RenderTransformOrigin="0.5,0.5" Height="159" FontWeight="Bold" FontSize="40" AutomationProperties.HelpText="CLICK THIS BUTTON!" Background="#FF11B74D" Click="ClickButton_Click" Grid.Column="1">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.443"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Label x:Name="ClickCounter" Content="Total Clicks:" HorizontalAlignment="Left" Margin="2,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.15,0.098" Height="52" Width="354" FontWeight="Bold" FontSize="24" Grid.ColumnSpan="2">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.222"/>
+                    <TranslateTransform X="0.107" Y="-0.171"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="CoinCounter" Content="Coins:" HorizontalAlignment="Left" Margin="0,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.15,0.098" Height="52" Width="354" FontWeight="Bold" FontSize="24" Grid.ColumnSpan="2">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.222"/>
+                    <TranslateTransform X="0.107" Y="-0.171"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="shopLabel" Content="Coin Shop" HorizontalAlignment="Left" Margin="360.711,43,0,0" VerticalAlignment="Top" FontSize="36" Grid.Column="1"/>
+        <Rectangle x:Name="ShopSeperator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="338.711,101,0,0" Stroke="Black" VerticalAlignment="Top" Width="214" Grid.Column="1"/>
+
+    </Grid>
+</Window>
