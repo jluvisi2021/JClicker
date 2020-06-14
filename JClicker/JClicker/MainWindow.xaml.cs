@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +24,10 @@ namespace JClicker
     {
         private int TotalClicks = 0;
         private int TotalCoins = 0;
+
+        List<string> Upgrades = new List<string>();
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,11 +37,52 @@ namespace JClicker
         private void ClickButton_Click(object sender, RoutedEventArgs e)
         {
             TotalClicks++;
-            ClickCounter.Content = "Total Clicks: "+TotalClicks;
+            
             if(TotalClicks % 100 == 0)
             {
                 TotalCoins++;
-                CoinCounter.Content = "Total Coins: " + TotalCoins;
+                
+            }
+            update();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(TotalCoins < 1)
+            {
+                MessageBox.Show("You do not have enough currency to purchase this item!");
+                return;
+            }
+
+            TotalCoins--;
+            AddUpgrade("Pointer");
+            update();
+
+        }
+
+
+
+
+
+
+        public void AddUpgrade(String upgrade)
+        {
+            Upgrades.Add("Pointer");
+        }
+        private void update()
+        {
+            ClickCounter.Content = "Total Clicks: " + TotalClicks;
+            CoinCounter.Content = "Total Coins: " + TotalCoins;
+
+            for(int i = 0; i < Upgrades.Count; i++)
+            {
+                if(Upgrades[i]=="Pointer")
+                {
+                    int _Pointers = int.Parse(PointersLabel.Content.ToString().Substring(0, 1));
+                    _Pointers++;
+                    PointersLabel.Content = _Pointers + PointersLabel.Content.ToString().Substring(1);
+                }
             }
         }
     }
