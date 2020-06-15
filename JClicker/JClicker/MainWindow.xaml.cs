@@ -1,9 +1,11 @@
-﻿using System;
+﻿using JClicker.Upgrades;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,15 +26,13 @@ namespace JClicker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int TotalClicks = 0;
-        private int TotalCoins = 0;
-        int Interval = 1000;
+        private List<Upgrade> Upgrades = new List<Upgrade>();
+        private int TotalCoins = 10;
+        readonly int Interval = 10; // 1MS Run Event
         private double CountIntervalUpdates = 0;
+        readonly Timer _timer;
 
-
-        Timer _timer;
-
-        List<string> Upgrades = new List<string>();
+        public int MW_TotalClicks { get; set; } = 0;
 
 
         public MainWindow()
@@ -43,12 +43,18 @@ namespace JClicker
             _timer = new Timer(Tick, null, Interval, Timeout.Infinite);
         }
 
+        public List<Upgrade> GetUpgradeList()
+        {
+            return Upgrades;
+        }
+
+ 
 
         private void ClickButton_Click(object sender, RoutedEventArgs e)
         {
-            TotalClicks++;
+            MW_TotalClicks++;
             Console.WriteLine("User clicked the button!");
-            if(TotalClicks % 10 == 0)
+            if(MW_TotalClicks % 10 == 0)
             {
                 TotalCoins++;
                 
@@ -56,36 +62,31 @@ namespace JClicker
             UpdateVisual();
 
         }
-
+        // Pointer "BUY" Button Click
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(TotalCoins < 1)
+            Upgrade upgrade = new PointerUpgrade("Pointer", 1.0, this);
+
+            if(TotalCoins < upgrade.Price)
             {
                 MessageBox.Show("You do not have enough currency to purchase this item!");
                 return;
             }
 
-            TotalCoins--;
-            AddUpgrade("Pointer");
+            TotalCoins -= (int)upgrade.Price;
+            Upgrades.Add(upgrade);
+            UpdateVisual();
            
         }
 
-
-
-        public void AddUpgrade(String upgrade)
+        public void UpdateVisual()
         {
-            Upgrades.Add("Pointer");
-            UpdateVisual();
-
-        }
-
-        private void UpdateVisual()
-        {
-            ClickCounter.Content = "Total Clicks: " + TotalClicks;
+            ClickCounter.Content = "Total Clicks: " + MW_TotalClicks;
             CoinCounter.Content = "Total Coins: " + TotalCoins;
             for (int i = 0; i < Upgrades.Count; i++)
             {
-                if (Upgrades[i] == "Pointer")
+                //TODO: Change to Switch Case LATER
+                if (Upgrades[i].Name == "Pointer")
                 {
 
                     PointersLabel.Content = (i+1) + PointersLabel.Content.ToString().Substring(1);
@@ -93,35 +94,18 @@ namespace JClicker
             }
         }
 
-        public int CountUpdate(String name)
-        {
-            int num = 0;
-            for (int i = 0; i < Upgrades.Count; i++)
-            {
-                if(Upgrades[i] == name)
-                {
-                    num++;
-                }
-            }
-            return num;
-        }
+       
 
         private void Tick(object state)
         {
+            CountIntervalUpdates++;
             try
             {
-               
-                ++CountIntervalUpdates;
-                if(CountIntervalUpdates % 2 == 0)
+                foreach(Upgrade u in Upgrades)
                 {
-                    // Run things after 2 seconds have passed.
-                    TotalClicks += CountUpdate("Pointer");
+                    u.ClickAction(CountIntervalUpdates);
                 }
-                // Update visuals off main thread.
-                Dispatcher.Invoke(() =>
-                {
-                    UpdateVisual();
-                });
+               
             }
             finally
             {
