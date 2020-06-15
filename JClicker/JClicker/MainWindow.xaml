@@ -12,7 +12,7 @@
             <ColumnDefinition Width="563*"/>
         </Grid.ColumnDefinitions>
         <Label Content="JClicker" Margin="200.711,10,152.333,0" VerticalAlignment="Top" Height="55" FontFamily="Trebuchet MS" FontSize="30" FontWeight="Bold" Grid.Column="1"/>
-        <Button x:Name="ClickButton" Content="Click Me!" HorizontalAlignment="Left" Margin="50.711,183,0,0" VerticalAlignment="Top" Width="190" RenderTransformOrigin="0.5,0.5" Height="159" FontWeight="Bold" FontSize="40" AutomationProperties.HelpText="CLICK THIS BUTTON!" Background="#FF11B74D" Click="ClickButton_Click" Grid.Column="1">
+        <Button x:Name="ClickButton" Content="Click Me!" HorizontalAlignment="Left" Margin="37,186,0,0" VerticalAlignment="Top" Width="190" RenderTransformOrigin="0.5,0.5" Height="159" FontWeight="Bold" FontSize="40" AutomationProperties.HelpText="CLICK THIS BUTTON!" Background="#FF11B74D" Click="ClickButton_Click" Grid.Column="1">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

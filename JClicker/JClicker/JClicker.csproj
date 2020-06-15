@@ -97,8 +97,5 @@
   <ItemGroup>
     <Resource Include="circle.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="seperator.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
