@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JClicker"
         mc:Ignorable="d"
-        Title="JClicker" Height="450" Width="600" Icon="circle.png" ResizeMode="NoResize">
+        Title="JClicker" Height="450" Width="650" Icon="circle.png" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
@@ -47,7 +47,7 @@
         <Rectangle Grid.ColumnSpan="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="0,52,0,0" Stroke="Black" VerticalAlignment="Top" Width="583"/>
         <Rectangle Grid.Column="1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="353" Margin="296,59,0,0" Stroke="Black" VerticalAlignment="Top" Width="2"/>
         <Label x:Name="PointersLabel" Content="0x Pointer (0.5CPS) - 1C" Grid.Column="1" HorizontalAlignment="Left" Margin="303,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.288,-0.495" FontSize="17"/>
-        <Button x:Name="BuyPointerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="503,107,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447"/>
+        <Button x:Name="BuyPointerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="537.333,105,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447"/>
 
     </Grid>
 </Window>

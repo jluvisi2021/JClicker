@@ -27,7 +27,7 @@ namespace JClicker
     public partial class MainWindow : Window
     {
         private List<Upgrade> Upgrades = new List<Upgrade>();
-        private int TotalCoins = 10;
+        private int TotalCoins = 100;
         readonly int Interval = 10; // 1MS Run Event
         private double CountIntervalUpdates = 0;
         readonly Timer _timer;
@@ -54,7 +54,7 @@ namespace JClicker
         {
             MW_TotalClicks++;
             Console.WriteLine("User clicked the button!");
-            if(MW_TotalClicks % 10 == 0)
+            if(MW_TotalClicks % 100 == 0)
             {
                 TotalCoins++;
                 
@@ -79,19 +79,17 @@ namespace JClicker
            
         }
 
-        public void UpdateVisual()
+        /// <summary>
+        /// Updates the text on the screen to account for changes.
+        /// </summary>
+        public  void UpdateVisual()
         {
             ClickCounter.Content = "Total Clicks: " + MW_TotalClicks;
             CoinCounter.Content = "Total Coins: " + TotalCoins;
-            for (int i = 0; i < Upgrades.Count; i++)
-            {
-                //TODO: Change to Switch Case LATER
-                if (Upgrades[i].Name == "Pointer")
-                {
 
-                    PointersLabel.Content = (i+1) + PointersLabel.Content.ToString().Substring(1);
-                }
-            }
+            // List all upgrade labels here.
+
+            PointersLabel.Content = Upgrades.Count(u => u.GetType() == typeof(PointerUpgrade)) + "x " + "Pointer (0.5CPS) - 1C";
         }
 
        
@@ -101,11 +99,15 @@ namespace JClicker
             CountIntervalUpdates++;
             try
             {
-                foreach(Upgrade u in Upgrades)
+                Upgrades.ForEach(u => u.ClickAction(CountIntervalUpdates));
+                
+
+                // Update UI
+                Dispatcher.Invoke(() =>
                 {
-                    u.ClickAction(CountIntervalUpdates);
-                }
-               
+                    UpdateVisual();
+                });
+
             }
             finally
             {

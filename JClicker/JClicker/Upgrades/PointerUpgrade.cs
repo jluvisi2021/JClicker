@@ -20,13 +20,14 @@ namespace JClicker.Upgrades
             base.MainWindow = MainWindow;
         }
 
+        
         public override void ClickAction(double timerseconds)
         {
             if(Upgrade.ParseSeconds(timerseconds) % 2 == 0)
             {
                 // Perform action every 2 seconds.
                 MainWindow.MW_TotalClicks += ClickValue;
-                UpdateVisual();
+                
             }
         }
     }
