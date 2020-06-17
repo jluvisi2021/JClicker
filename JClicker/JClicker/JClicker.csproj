@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Upgrades\ClickerUpgrade.cs" />
     <Compile Include="Upgrades\PointerUpgrade.cs" />
     <Compile Include="Upgrades\Upgrade.cs" />
     <Page Include="MainWindow.xaml">
@@ -98,6 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="cookie.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

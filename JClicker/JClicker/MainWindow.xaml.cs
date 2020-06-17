@@ -38,9 +38,33 @@ namespace JClicker
         public MainWindow()
         {
             InitializeComponent();
-          
+
+            SetupTooltips();
+
+            ClickButton.Content = new Image
+            {
+                
+                Source = new BitmapImage(new Uri("cookie.png", UriKind.Relative)),
+                VerticalAlignment = VerticalAlignment.Center,
+                Stretch = Stretch.Fill,
+                Height = 180,
+                Width = 180
+                
+            };
+           
             // Start a repeating timer.
             _timer = new Timer(Tick, null, Interval, Timeout.Infinite);
+        }
+
+
+        public void SetupTooltips()
+        {
+            
+            PointersLabel.ToolTip = new ToolTip { Content = "Gain 1 extra cookie every 2 seconds.\nCost: 1 Coin\nCPS: 0.5" };
+            BuyPointerButton.ToolTip = new ToolTip { Content = "Click to buy 1x Pointer upgrade." };
+                
+            ClickerLabel.ToolTip = new ToolTip { Content = "Gain 3 extra cookies every 1 second.\nCost: 4 Coins\nCPS: 3.0" };
+            BuyClickerButton.ToolTip = new ToolTip { Content = "Click to buy 1x Clicker upgrade." };
         }
 
         public List<Upgrade> GetUpgradeList()
@@ -65,18 +89,32 @@ namespace JClicker
         // Pointer "BUY" Button Click
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Upgrade upgrade = new PointerUpgrade("Pointer", 1.0, this);
-
-            if(TotalCoins < upgrade.Price)
+            string ButtonPressedName = (sender as Button).Name; // Get the name of button clicked.
+            if(ButtonPressedName.Equals("BuyPointerButton"))
             {
-                MessageBox.Show("You do not have enough currency to purchase this item!");
-                return;
-            }
+                Upgrade upgrade = new PointerUpgrade("Pointer", 1.0, this);
 
-            TotalCoins -= (int)upgrade.Price;
-            Upgrades.Add(upgrade);
-            UpdateVisual();
-           
+                if (TotalCoins < upgrade.Price)
+                {
+                    MessageBox.Show("You do not have enough currency to purchase this item!");
+                    return;
+                }
+
+                TotalCoins -= (int)upgrade.Price;
+                Upgrades.Add(upgrade);
+            }else if(ButtonPressedName.Equals("BuyClickerButton"))
+            {
+                Upgrade upgrade = new ClickerUpgrade("Clicker", 4.0, this);
+                if (TotalCoins < upgrade.Price)
+                {
+                    MessageBox.Show("You do not have enough currency to purchase this item!");
+                    return;
+                }
+
+                TotalCoins -= (int)upgrade.Price;
+                Upgrades.Add(upgrade);
+            }
+                UpdateVisual();
         }
 
         /// <summary>
@@ -84,12 +122,13 @@ namespace JClicker
         /// </summary>
         public  void UpdateVisual()
         {
-            ClickCounter.Content = "Total Clicks: " + MW_TotalClicks;
+            ClickCounter.Content = "Total Cookies: " + MW_TotalClicks;
             CoinCounter.Content = "Total Coins: " + TotalCoins;
 
             // List all upgrade labels here.
 
             PointersLabel.Content = Upgrades.Count(u => u.GetType() == typeof(PointerUpgrade)) + "x " + "Pointer (0.5CPS) - 1C";
+            ClickerLabel.Content = Upgrades.Count(u => u.GetType() == typeof(ClickerUpgrade)) + " x Clicker (3CPS) - 4C";
         }
 
        
@@ -101,13 +140,11 @@ namespace JClicker
             {
                 Upgrades.ForEach(u => u.ClickAction(CountIntervalUpdates));
                 
-
                 // Update UI
                 Dispatcher.Invoke(() =>
                 {
                     UpdateVisual();
                 });
-
             }
             finally
             {

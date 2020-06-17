@@ -12,17 +12,20 @@
             <ColumnDefinition Width="563*"/>
         </Grid.ColumnDefinitions>
         <Label Content="JClicker" Margin="200.711,10,152.333,0" VerticalAlignment="Top" Height="55" FontFamily="Trebuchet MS" FontSize="30" FontWeight="Bold" Grid.Column="1"/>
-        <Button x:Name="ClickButton" Content="Click Me!" HorizontalAlignment="Left" Margin="37,186,0,0" VerticalAlignment="Top" Width="190" RenderTransformOrigin="0.5,0.5" Height="159" FontWeight="Bold" FontSize="40" AutomationProperties.HelpText="CLICK THIS BUTTON!" Background="#FF11B74D" Click="ClickButton_Click" Grid.Column="1">
+
+        <Button x:Name="ClickButton" Content="Click Me!" HorizontalAlignment="Left" Margin="37,186,0,0" VerticalAlignment="Top" Width="190" RenderTransformOrigin="1,1" Height="159" FontWeight="Bold" FontSize="40" AutomationProperties.HelpText="CLICK THIS BUTTON!" Click="ClickButton_Click" Grid.Column="1" ToolTip="Click to gain points!" Background="White" BorderBrush="White" Foreground="#FF070707">
+
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform Angle="0.443"/>
-                    <TranslateTransform/>
+                    <TranslateTransform X="-0.617512" Y="0.732138"/>
                 </TransformGroup>
             </Button.RenderTransform>
+
         </Button>
-        <Label x:Name="ClickCounter" Content="Total Clicks:" HorizontalAlignment="Left" Margin="2,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.15,0.098" Height="52" Width="354" FontWeight="Bold" FontSize="24" Grid.ColumnSpan="2">
+        <Label x:Name="ClickCounter" Content="Total Cookies:" HorizontalAlignment="Left" Margin="2,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.15,0.098" Height="52" Width="354" FontWeight="Bold" FontSize="24" Grid.ColumnSpan="2">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -43,11 +46,13 @@
             </Label.RenderTransform>
         </Label>
         <Label x:Name="shopLabel" Content="Coin Shop" HorizontalAlignment="Left" Margin="339,44,0,0" VerticalAlignment="Top" FontSize="36" Grid.Column="1"/>
-        <Rectangle x:Name="ShopSeperator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="303,101,0,0" Stroke="Black" VerticalAlignment="Top" Width="250" Grid.Column="1"/>
-        <Rectangle Grid.ColumnSpan="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="0,52,0,0" Stroke="Black" VerticalAlignment="Top" Width="583"/>
+        <Rectangle x:Name="ShopSeperator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="303.333,101,0,0" Stroke="Black" VerticalAlignment="Top" Width="284" Grid.Column="1"/>
+        <Rectangle Grid.ColumnSpan="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="0,52,0,0" Stroke="Black" VerticalAlignment="Top" Width="620"/>
         <Rectangle Grid.Column="1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="353" Margin="296,59,0,0" Stroke="Black" VerticalAlignment="Top" Width="2"/>
-        <Label x:Name="PointersLabel" Content="0x Pointer (0.5CPS) - 1C" Grid.Column="1" HorizontalAlignment="Left" Margin="303,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.288,-0.495" FontSize="17"/>
-        <Button x:Name="BuyPointerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="537.333,105,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447"/>
+        <Label x:Name="PointersLabel" Content="0x Pointer (0.5CPS) - 1C" Grid.Column="1" HorizontalAlignment="Left" Margin="303,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.288,-0.495" FontSize="17" ToolTip="Get 1 extra cookie every 2 seconds.\nRAWR"/>
+        <Button x:Name="BuyPointerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="537.333,105,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
+        <Label x:Name="ClickerLabel" Content="0x Clicker (3CPS) - 4C" Grid.Column="1" HorizontalAlignment="Left" Margin="303.333,143,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.288,-0.495" FontSize="17" ToolTip="Gain 3 extra cookies every 1 second."/>
+        <Button x:Name="BuyClickerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="537.333,145,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
 
     </Grid>
 </Window>
