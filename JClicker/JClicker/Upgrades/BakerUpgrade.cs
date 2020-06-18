@@ -1,22 +1,26 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace JClicker.Upgrades
 {
-    public class ClickerUpgrade : Upgrade
+    class BakerUpgrade : Upgrade
     {
-        readonly int ClickValue = 3;
-        public static int BasePrice = 3;
-        public ClickerUpgrade(string Name = null, double Price = 0.0, MainWindow MainWindow = null)
+
+        readonly int ClickValue = 10;
+        public static int BasePrice = 8;
+
+        public BakerUpgrade(string Name = null, double Price = 0.0, MainWindow MainWindow = null)
         {
+            
             base.Name = Name;
-            int amt = MainWindow.GetUpgradeList().Count(u => u.GetType() == typeof(ClickerUpgrade));
+
+            int amt = MainWindow.GetUpgradeList().Count(u => u.GetType() == typeof(BakerUpgrade));
 
             if (amt == 0)
             {
@@ -26,15 +30,14 @@ namespace JClicker.Upgrades
             {
                 base.Price = Price * amt;
             }
-
             base.MainWindow = MainWindow;
         }
 
         
+
         public override void ClickAction(double timerseconds)
         {
-            
-            if(timerseconds % 65 == 0)
+            if (timerseconds % 65 == 0)
             {
                 for(int i = 0; i < ClickValue; i++)
                 {
@@ -43,7 +46,7 @@ namespace JClicker.Upgrades
                 }
                 //MainWindow.MW_TotalClicks += ClickValue;
             }
-            
+           
         }
     }
 }

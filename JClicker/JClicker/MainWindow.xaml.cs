@@ -27,7 +27,7 @@ namespace JClicker
     public partial class MainWindow : Window
     {
         private List<Upgrade> Upgrades = new List<Upgrade>();
-        private int TotalCoins = 100;
+        private int TotalCoins = 1000;
         readonly int Interval = 10; // 1MS Run Event
         private double CountIntervalUpdates = 0;
         readonly Timer _timer;
@@ -65,6 +65,10 @@ namespace JClicker
                 
             ClickerLabel.ToolTip = new ToolTip { Content = "Gain 3 extra cookies every 1 second.\nCost: 4 Coins\nCPS: 3.0" };
             BuyClickerButton.ToolTip = new ToolTip { Content = "Click to buy 1x Clicker upgrade." };
+
+            BakerLabel.ToolTip = new ToolTip { Content = "Gain 10 Cookies every second. \nCost: 8 Coins\nCPS: 10" };
+            BuyBakerButton.ToolTip = new ToolTip { Content = "Click to buy 1x Baker upgrade." };
+        
         }
 
         public List<Upgrade> GetUpgradeList()
@@ -78,21 +82,44 @@ namespace JClicker
         {
             MW_TotalClicks++;
             Console.WriteLine("User clicked the button!");
-            if(MW_TotalClicks % 100 == 0)
+            CheckForCoins();
+            // UpdateVisual() called in CheckForCoins();
+        }
+        public void CheckForCoins()
+        {
+            if (MW_TotalClicks % 100 == 0)
             {
                 TotalCoins++;
-                
             }
-            UpdateVisual();
-
+            Dispatcher.Invoke(() =>
+            {
+                UpdateVisual();
+            });
         }
-        // Pointer "BUY" Button Click
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string ButtonPressedName = (sender as Button).Name; // Get the name of button clicked.
             if(ButtonPressedName.Equals("BuyPointerButton"))
             {
-                Upgrade upgrade = new PointerUpgrade("Pointer", 1.0, this);
+                Upgrade upgrade = new PointerUpgrade("Pointer", PointerUpgrade.BasePrice, this);
+
+
+                //upgrade.Price *= Upgrades.Count(u => u.GetType() == typeof(PointerUpgrade));
+                
+                if (TotalCoins < upgrade.Price)
+                {
+                    MessageBox.Show("You do not have enough currency to purchase this item!");
+                    return;
+                }
+
+
+                TotalCoins -= (int)upgrade.Price;
+                Upgrades.Add(upgrade);
+                
+            }else if(ButtonPressedName.Equals("BuyClickerButton"))
+            {
+                Upgrade upgrade = new ClickerUpgrade("Clicker", ClickerUpgrade.BasePrice, this);
 
                 if (TotalCoins < upgrade.Price)
                 {
@@ -102,15 +129,15 @@ namespace JClicker
 
                 TotalCoins -= (int)upgrade.Price;
                 Upgrades.Add(upgrade);
-            }else if(ButtonPressedName.Equals("BuyClickerButton"))
+            }else if(ButtonPressedName.Equals("BuyBakerButton"))
             {
-                Upgrade upgrade = new ClickerUpgrade("Clicker", 4.0, this);
-                if (TotalCoins < upgrade.Price)
+                // Setup Baker Upgrade.
+                Upgrade upgrade = new BakerUpgrade("Baker", BakerUpgrade.BasePrice, this);
+                if(TotalCoins < upgrade.Price)
                 {
                     MessageBox.Show("You do not have enough currency to purchase this item!");
                     return;
                 }
-
                 TotalCoins -= (int)upgrade.Price;
                 Upgrades.Add(upgrade);
             }
@@ -127,8 +154,10 @@ namespace JClicker
 
             // List all upgrade labels here.
 
-            PointersLabel.Content = Upgrades.Count(u => u.GetType() == typeof(PointerUpgrade)) + "x " + "Pointer (0.5CPS) - 1C";
-            ClickerLabel.Content = Upgrades.Count(u => u.GetType() == typeof(ClickerUpgrade)) + " x Clicker (3CPS) - 4C";
+            PointersLabel.Content = Upgrades.Count(u => u.GetType() == typeof(PointerUpgrade)) + "x " + "Pointer (0.5CPS) - " + new PointerUpgrade(null,PointerUpgrade.BasePrice,this).Price + "C";
+            ClickerLabel.Content = Upgrades.Count(u => u.GetType() == typeof(ClickerUpgrade)) + " x Clicker (3CPS) - " + new ClickerUpgrade(null, ClickerUpgrade.BasePrice, this).Price + "C"; ;
+            BakerLabel.Content = Upgrades.Count(u => u.GetType() == typeof(BakerUpgrade)) + " x Baker (8CPS) - " + new BakerUpgrade(null, BakerUpgrade.BasePrice, this).Price + "C";
+
         }
 
        
@@ -145,6 +174,9 @@ namespace JClicker
                 {
                     UpdateVisual();
                 });
+            }catch(Exception)
+            {
+
             }
             finally
             {

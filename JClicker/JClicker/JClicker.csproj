@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Upgrades\BakerUpgrade.cs" />
     <Compile Include="Upgrades\ClickerUpgrade.cs" />
     <Compile Include="Upgrades\PointerUpgrade.cs" />
     <Compile Include="Upgrades\Upgrade.cs" />
@@ -96,9 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="circle.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="cookie.png" />
