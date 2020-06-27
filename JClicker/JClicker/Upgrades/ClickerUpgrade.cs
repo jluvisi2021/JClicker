@@ -36,11 +36,10 @@ namespace JClicker.Upgrades
             
             if(timerseconds % 65 == 0)
             {
-                for(int i = 0; i < ClickValue; i++)
-                {
-                    MainWindow.MW_TotalClicks++;
-                    MainWindow.CheckForCoins();
-                }
+
+                MainWindow.MW_TotalClicks += ClickValue;
+                   // MainWindow.CheckForCoins();
+                
                 //MainWindow.MW_TotalClicks += ClickValue;
             }
             

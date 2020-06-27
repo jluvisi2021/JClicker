@@ -9,18 +9,18 @@ using System.Windows;
 
 namespace JClicker.Upgrades
 {
-    class BakerUpgrade : Upgrade
+    class CookieFarmUpgrade : Upgrade
     {
 
-        readonly int ClickValue = 10;
-        public static int BasePrice = 8;
+        readonly int ClickValue = 35;
+        public static int BasePrice = 14;
 
-        public BakerUpgrade(string Name = null, double Price = 0.0, MainWindow MainWindow = null)
+        public CookieFarmUpgrade(string Name = null, double Price = 0.0, MainWindow MainWindow = null)
         {
             
             base.Name = Name;
 
-            int amt = MainWindow.GetUpgradeList().Count(u => u.GetType() == typeof(BakerUpgrade));
+            int amt = MainWindow.GetUpgradeList().Count(u => u.GetType() == typeof(CookieFarmUpgrade));
 
             if (amt == 0)
             {
@@ -39,10 +39,11 @@ namespace JClicker.Upgrades
         {
             if (timerseconds % 65 == 0)
             {
-                //  for(int i = 0; i < ClickValue; i++)
-                //{
+
+                // for(int i = 0; i < ClickValue; i++)
+                //  {
                 MainWindow.MW_TotalClicks += ClickValue;
-                    //MainWindow.CheckForCoins();
+
                 //}
                 //MainWindow.MW_TotalClicks += ClickValue;
             }

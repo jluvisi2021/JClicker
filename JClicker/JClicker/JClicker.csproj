@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Upgrades\CookieFarmUpgrade.cs" />
     <Compile Include="Upgrades\BakerUpgrade.cs" />
     <Compile Include="Upgrades\ClickerUpgrade.cs" />
     <Compile Include="Upgrades\PointerUpgrade.cs" />
