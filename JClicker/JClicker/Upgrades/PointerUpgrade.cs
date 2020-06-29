@@ -38,7 +38,7 @@ namespace JClicker.Upgrades
             {
                 // Perform action every 2 seconds.
                 MainWindow.MW_TotalClicks += ClickValue;
-                MainWindow.CheckForCoins();
+               
             }
            
         }

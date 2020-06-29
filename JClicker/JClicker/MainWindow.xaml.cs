@@ -28,7 +28,7 @@ namespace JClicker
     public partial class MainWindow : Window
     {
         private List<Upgrade> Upgrades = new List<Upgrade>();
-        private int TotalCoins = 14;
+        private int TotalCoins = 56+42;
         readonly int Interval = 10; // 1MS Run Event
         private double CountIntervalUpdates = 0;
         readonly Timer _timer;
@@ -58,6 +58,10 @@ namespace JClicker
         }
 
 
+        /// <summary>
+        /// Set up the tool tips.
+        /// This is done in code and not the XAML.
+        /// </summary>
         public void SetupTooltips()
         {
             //TODO: Change the coins value according to the new set value.
@@ -85,19 +89,11 @@ namespace JClicker
         {
             MW_TotalClicks++;
             Console.WriteLine("User clicked the button!");
-            CheckForCoins();
-            // UpdateVisual() called in CheckForCoins();
-        }
-        public void CheckForCoins()
-        {
-            if (MW_TotalClicks % 100 == 0)
+            if(MW_TotalClicks % 100 == 0)
             {
                 TotalCoins++;
             }
-            Dispatcher.Invoke(() =>
-            {
-                UpdateVisual();
-            });
+            // UpdateVisual() called in CheckForCoins();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -194,12 +190,25 @@ namespace JClicker
                     }
                     else
                     {
+                        // Detect how many coins we should give the player based on the change in clicks.
+
+                        // This checks the distance from the previous number amount to the new amount and decides how many coins to give. (1 Coin every 100)
                         int num1 = previous.ToString().ToCharArray()[previous.ToString().ToCharArray().Length - 3];
                         int num2 = MW_TotalClicks.ToString().ToCharArray()[previous.ToString().ToCharArray().Length - 3];
-                        if(num1 > num2)
+                        if (num1 > num2)
                         {
-
-                            TotalCoins += (MW_TotalClicks - previous) / 100;
+                            Console.WriteLine("Detected Shift in Number place. Attempting to add coins.");
+                            TotalCoins++;
+                            if ((MW_TotalClicks - previous) / 100 == 0)
+                            {
+                                TotalCoins++;
+                            }
+                            else
+                            {
+                                TotalCoins += (MW_TotalClicks - previous) / 100;
+                            }
+                           // TotalCoins += (MW_TotalClicks - previous) / 100;
+                           // 933 to 1256 thats +3 Coins
                         }
                         else
                         {
