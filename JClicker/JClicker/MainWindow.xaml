@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JClicker"
         mc:Ignorable="d"
-        Title="JClicker" Height="450" Width="650" Icon="cookie.png" ResizeMode="NoResize">
-    <Grid>
+        Title="JClicker" Height="450" Width="711" Icon="cookie.png" ResizeMode="NoResize">
+    <Grid Margin="0,0,-18.333,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
             <ColumnDefinition Width="563*"/>
@@ -46,17 +46,19 @@
             </Label.RenderTransform>
         </Label>
         <Label x:Name="shopLabel" Content="Coin Shop" HorizontalAlignment="Left" Margin="339,44,0,0" VerticalAlignment="Top" FontSize="36" Grid.Column="1"/>
-        <Rectangle x:Name="ShopSeperator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="303.333,101,0,0" Stroke="Black" VerticalAlignment="Top" Width="284" Grid.Column="1"/>
-        <Rectangle Grid.ColumnSpan="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="0,52,0,0" Stroke="Black" VerticalAlignment="Top" Width="620"/>
+        <Rectangle x:Name="ShopSeperator" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="303,101,0,0" Stroke="Black" VerticalAlignment="Top" Width="344" Grid.Column="1"/>
+        <Rectangle Grid.ColumnSpan="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="0,52,0,0" Stroke="Black" VerticalAlignment="Top" Width="683"/>
         <Rectangle Grid.Column="1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="353" Margin="296,59,0,0" Stroke="Black" VerticalAlignment="Top" Width="2"/>
         <Label x:Name="PointersLabel" Content="0x Pointer (0.5CPS) - 1C" Grid.Column="1" HorizontalAlignment="Left" Margin="303,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.288,-0.495" FontSize="17" ToolTip="Get 1 extra cookie every 2 seconds.\nRAWR"/>
-        <Button x:Name="BuyPointerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="537.333,105,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
+        <Button x:Name="BuyPointerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="597,105,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
         <Label x:Name="ClickerLabel" Content="0x Clicker (3CPS) - 4C" Grid.Column="1" HorizontalAlignment="Left" Margin="303.333,143,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.288,-0.495" FontSize="17" ToolTip="Gain 3 extra cookies every 1 second."/>
-        <Button x:Name="BuyClickerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="537.333,141,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
+        <Button x:Name="BuyClickerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="597,141,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
         <Label x:Name="BakerLabel" Content="0x Baker (10CPS) - 8C" Grid.Column="1" HorizontalAlignment="Left" Margin="303.333,179,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.288,-0.495" FontSize="17" ToolTip="Gain 3 extra cookies every 1 second."/>
-        <Button x:Name="BuyBakerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="537.333,177,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
+        <Button x:Name="BuyBakerButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="597,177,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
         <Label x:Name="CookieFarmLabel" Content="0x Cookie Farm (35CPS) - 14C" Grid.Column="1" HorizontalAlignment="Left" Margin="303.333,212,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.288,-0.495" FontSize="17" ToolTip="Gain 3 extra cookies every 1 second."/>
-        <Button x:Name="BuyCookieFarmButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="537.333,212,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
+        <Button x:Name="BuyCookieFarmButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="597,212,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
+        <Label x:Name="CookieFactoryLabel" Content="0x Cookie Factory (100CPS) - 30C" Grid.Column="1" HorizontalAlignment="Left" Margin="303.333,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.288,-0.495" FontSize="17" ToolTip="Gain 3 extra cookies every 1 second."/>
+        <Button x:Name="BuyCookieFactoryButton" Content="Buy" Grid.Column="1" HorizontalAlignment="Left" Margin="597,248,0,0" VerticalAlignment="Top" Width="50" Height="31" Click="Button_Click" RenderTransformOrigin="1.037,0.447" ToolTip="Click to buy 1x Pointer for 1 Coin!"/>
 
     </Grid>
 </Window>

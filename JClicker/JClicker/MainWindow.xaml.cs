@@ -76,6 +76,9 @@ namespace JClicker
 
             CookieFarmLabel.ToolTip = new ToolTip { Content = "Gain 35 Cookies every second. \nCost: 14 Coins\nCPS: 35" };
             BuyCookieFarmButton.ToolTip = new ToolTip { Content = "Click to buy 1x Cookie Farm upgrade." };
+
+            CookieFactoryLabel.ToolTip = new ToolTip { Content = "Gain 100 Cookies every second. \nCost: 30 Coins\nCPS: 100" };
+            BuyCookieFactoryButton.ToolTip = new ToolTip { Content = "Click to buy 1x Cookie Factory upgrade." };
         }
 
         public List<Upgrade> GetUpgradeList()
@@ -149,6 +152,16 @@ namespace JClicker
                 }
                 TotalCoins -= (int)upgrade.Price;
                 Upgrades.Add(upgrade);
+            }else if(ButtonPressedName.Equals("BuyCookieFactoryButton"))
+            {
+                Upgrade upgrade = new CookieFactoryUpgrade("Cookie Factory", CookieFactoryUpgrade.BasePrice, this);
+                if(TotalCoins < upgrade.Price)
+                {
+                    MessageBox.Show($"You do not have enough currency to purchase this item!\nRequired Amount:{upgrade.Price}\nYour Amount:{TotalCoins}");
+                    return;
+                }
+                TotalCoins -= (int)upgrade.Price;
+                Upgrades.Add(upgrade);
             }
                 UpdateVisual();
         }
@@ -167,6 +180,7 @@ namespace JClicker
             ClickerLabel.Content = Upgrades.Count(u => u.GetType() == typeof(ClickerUpgrade)) + "x Clicker (3CPS) - " + new ClickerUpgrade(null, ClickerUpgrade.BasePrice, this).Price + "C"; ;
             BakerLabel.Content = Upgrades.Count(u => u.GetType() == typeof(BakerUpgrade)) + "x Baker (10CPS) - " + new BakerUpgrade(null, BakerUpgrade.BasePrice, this).Price + "C";
             CookieFarmLabel.Content = Upgrades.Count(u => u.GetType() == typeof(CookieFarmUpgrade)) + "x Cookie Farm (35CPS) - " + new CookieFarmUpgrade(null, CookieFarmUpgrade.BasePrice, this).Price + "C";
+            CookieFactoryLabel.Content = Upgrades.Count(u => u.GetType() == typeof(CookieFactoryUpgrade)) + "x Cookie Factory (100CPS) - " + new CookieFactoryUpgrade(null, CookieFactoryUpgrade.BasePrice, this).Price + "C";
         }
 
         bool f1 = true;

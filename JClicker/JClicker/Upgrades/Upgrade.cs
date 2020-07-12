@@ -23,6 +23,7 @@ namespace JClicker.Upgrades
         /// </summary>
         public void UpdateVisual()
         {
+            //Invoke
             MainWindow.Dispatcher.Invoke(() =>
             {
                 MainWindow.UpdateVisual();
