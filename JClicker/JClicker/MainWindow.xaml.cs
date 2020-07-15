@@ -28,7 +28,7 @@ namespace JClicker
     public partial class MainWindow : Window
     {
         private List<Upgrade> Upgrades = new List<Upgrade>();
-        private int TotalCoins = 56+42;
+        private int TotalCoins = 0;
         readonly int Interval = 10; // 1MS Run Event
         private double CountIntervalUpdates = 0;
         readonly Timer _timer;

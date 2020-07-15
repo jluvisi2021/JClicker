@@ -25,7 +25,7 @@
             </Button.RenderTransform>
 
         </Button>
-        <Label x:Name="ClickCounter" Content="Total Cookies:" HorizontalAlignment="Left" Margin="2,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.15,0.098" Height="52" Width="354" FontWeight="Bold" FontSize="24" Grid.ColumnSpan="2">
+        <Label x:Name="ClickCounter" Content="Total Cookies:" HorizontalAlignment="Left" Margin="2,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.15,0.098" Height="52" Width="354" FontWeight="Bold" FontSize="24" Grid.ColumnSpan="2" FontFamily="Trebuchet MS" FontStyle="Italic">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -35,7 +35,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="CoinCounter" Content="Total Coins:" HorizontalAlignment="Left" Margin="0,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.15,0.098" Height="52" Width="354" FontWeight="Bold" FontSize="24" Grid.ColumnSpan="2">
+        <Label x:Name="CoinCounter" Content="Total Coins:" HorizontalAlignment="Left" Margin="0,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.15,0.098" Height="52" Width="354" FontWeight="Bold" FontSize="24" Grid.ColumnSpan="2" FontFamily="Trebuchet MS" FontStyle="Italic">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
